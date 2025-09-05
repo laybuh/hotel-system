@@ -23,6 +23,7 @@ export class AppComponent implements OnInit{
   checkIn!:string;
   checkOut!:string;
   msg: string[] = [];
+  times: string[] = [];
 
   ngOnInit(){
     this.roomsearch= new FormGroup({
@@ -38,6 +39,7 @@ export class AppComponent implements OnInit{
     });
 
     this.getMsg().subscribe(data => this.msg = data);
+    this.getTimes().subscribe(data => this.times = data);
   }
 
   onSubmit({value,valid}:{value:Roomsearch,valid:boolean}){
@@ -69,6 +71,10 @@ export class AppComponent implements OnInit{
 
   getMsg(): Observable<string[]> {
     return this.httpClient.get<string[]>(this.mainURL + '/welcome');
+  }
+
+  getTimes(): Observable<string[]> {
+    return this.httpClient.get<string[]>(this.mainURL + '/times');
   }
 }
 

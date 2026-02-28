@@ -3,6 +3,7 @@ RUN apk add --no-cache nodejs npm
 RUN npm install -g @angular/cli
 WORKDIR /app
 COPY . .
+RUN cd src/main/UI && npm install
 RUN mvn clean package -DskipTests
 
 FROM eclipse-temurin:17-jdk-alpine

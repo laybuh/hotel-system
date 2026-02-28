@@ -1,4 +1,6 @@
 FROM maven:3.9-eclipse-temurin-17-alpine AS build
+RUN apk add --no-cache nodejs npm
+RUN npm install -g @angular/cli
 WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
